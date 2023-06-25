@@ -12,10 +12,12 @@ public class User {
         this.password = password;
     }
     //User for login
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
+
     //User default
     public User() {
     }

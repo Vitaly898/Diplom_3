@@ -1,4 +1,7 @@
+import POJO.User;
+import POJO.UserClient;
 import io.qameta.allure.Description;
+import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pageObject.LoginPage;
 import pageObject.MainPage;
 import pageObject.RegistrationPage;
+import POJO.UserGenerator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class registrationPageTest {
     private WebDriver driver;
     MainPage mainPage;
+    User user;
 
     @Before
     public void setUp(){
@@ -35,7 +40,8 @@ public class registrationPageTest {
         loginPage.clickOnRegister();
         RegistrationPage registerPage = new RegistrationPage(driver);
         registerPage.waitForLoadRegisterPage();
-        registerPage.registerNewUser("igor", "lemon@mail.eu", "1234567");
+        user = UserGenerator.createRandomUser();
+        registerPage.registerNewUser(user.getName(), user.getEmail(), user.getPassword());
         loginPage.waitForLoadEntrance();
     }
     @Test

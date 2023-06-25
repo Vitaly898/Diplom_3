@@ -1,3 +1,5 @@
+import POJO.User;
+import POJO.UserGenerator;
 import io.qameta.allure.Description;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,7 @@ public class LoginPageTest {
     WebDriver driver;
     String emailValue = "testUSer1234@yandex.ru";
     String passwordValue = "1234567";
+    User user;
 
     @Before
     public void setUp(){
@@ -55,7 +58,8 @@ public class LoginPageTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnRegister();
         RegistrationPage registerPage = new RegistrationPage(driver);
-        registerPage.registerNewUser("Leha", "leonid@yandex.ru", "12345asd");
+        user = UserGenerator.createRandomUser();
+        registerPage.registerNewUser(user.getName(), user.getEmail(), user.getPassword());
         loginPage.waitForLoadEntrance();
         loginPage.loginUser("leonid@yandex.ru", "12345asd");
         mainPage.waitForLoadMainPage();
