@@ -69,19 +69,16 @@ public class MainPage {
 
     @Step("Клик по кнопке 'Булки'")
     public void clickOnBunsButton() throws InterruptedException {
-        Thread.sleep(500);
         driver.findElement(bunsButton).click();
 
     }
     @Step("Клик по кнопке 'Соуса'")
     public void clickOnSaucesButton() throws InterruptedException {
-        Thread.sleep(500);
         driver.findElement(saucesButton).click();
     }
 
     @Step("Клик по кнопке 'Начинки'")
     public void clickOnFillingButton() throws InterruptedException {
-        Thread.sleep(500);
         driver.findElement(fillingsButton).click();
     }
 

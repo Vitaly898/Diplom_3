@@ -1,5 +1,5 @@
-import POJO.User;
-import POJO.UserGenerator;
+import Client.User;
+import Client.UserGenerator;
 import io.qameta.allure.Description;
 import org.junit.After;
 import org.junit.Assert;
@@ -27,7 +27,7 @@ public class LoginPageTest {
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "/Users/vitalypetrov/IdeaProjects/chromedriver");
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--remote-allow-origins=*","--headless");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.navigate().to("https://stellarburgers.nomoreparties.site/");

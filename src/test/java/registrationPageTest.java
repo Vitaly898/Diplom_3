@@ -1,7 +1,5 @@
-import POJO.User;
-import POJO.UserClient;
+import Client.User;
 import io.qameta.allure.Description;
-import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pageObject.LoginPage;
 import pageObject.MainPage;
 import pageObject.RegistrationPage;
-import POJO.UserGenerator;
+import Client.UserGenerator;
 
 import java.util.concurrent.TimeUnit;
 

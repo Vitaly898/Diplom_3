@@ -1,4 +1,4 @@
-package POJO;
+package Client;
 
 public class User {
     private String name;
