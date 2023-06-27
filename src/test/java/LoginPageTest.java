@@ -1,6 +1,8 @@
 import POJO.User;
 import POJO.UserGenerator;
 import io.qameta.allure.Description;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +27,7 @@ public class LoginPageTest {
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "/Users/vitalypetrov/IdeaProjects/chromedriver");
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*","--headless");
+        options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.navigate().to("https://stellarburgers.nomoreparties.site/");
@@ -37,7 +39,7 @@ public class LoginPageTest {
         mainPage.clickOnLoginButton();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginUser(emailValue, passwordValue);
-        mainPage.waitForLoadMainPage();
+        Assert.assertTrue(mainPage.checkMainPageLoad());
 
     }
     @Test
@@ -47,7 +49,7 @@ public class LoginPageTest {
         mainPage.clickOnAccountButton();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginUser(emailValue, passwordValue);
-        mainPage.waitForLoadMainPage();
+        Assert.assertTrue(mainPage.checkMainPageLoad());
 
     }
     @Test
@@ -62,7 +64,7 @@ public class LoginPageTest {
         registerPage.registerNewUser(user.getName(), user.getEmail(), user.getPassword());
         loginPage.waitForLoadEntrance();
         loginPage.loginUser("leonid@yandex.ru", "12345asd");
-        mainPage.waitForLoadMainPage();
+        Assert.assertTrue(mainPage.checkMainPageLoad());
     }
     @Test
     @Description("Логин со страницы восстановления пароля")
@@ -75,7 +77,11 @@ public class LoginPageTest {
         recoverPasswordPage.waitForLoadedRecoverPassword();
         recoverPasswordPage.clickOnLoginLink();
         loginPage.loginUser(emailValue, passwordValue);
-        mainPage.waitForLoadMainPage();
+        Assert.assertTrue(mainPage.checkMainPageLoad());
 
+    }
+    @After
+    public void shutDown(){
+        driver.quit();
     }
 }

@@ -29,8 +29,7 @@ public class RelinkingBetweenItemsTest {
     public void relinkToSaucesTest() throws InterruptedException {
         mainPage = new MainPage(driver);
         mainPage.clickOnSaucesButton();
-        mainPage.clickOnBunsButton();
-        Assert.assertEquals(driver.findElement(mainPage.getSaucesButton()).getText(),"Соусы");
+        Assert.assertEquals("Соусы",mainPage.getTextOfActiveTab());
     }
     @Test
     @Description("Переход в раздел 'Булки'")
@@ -38,14 +37,15 @@ public class RelinkingBetweenItemsTest {
         mainPage = new MainPage(driver);
         mainPage.clickOnSaucesButton();
         mainPage.clickOnBunsButton();
-        Assert.assertEquals(driver.findElement(mainPage.getBunsButton()).getText(),"Булки");
+        String test = mainPage.getTextOfActiveTab();
+        Assert.assertEquals("Булки",mainPage.getTextOfActiveTab());
     }
     @Test
     @Description("Переход в раздел 'Начинки'")
     public void relinkToFillingsTest() throws InterruptedException {
         mainPage = new MainPage(driver);
         mainPage.clickOnFillingButton();
-        Assert.assertEquals(driver.findElement(mainPage.getFillingsButton()).getText(),"Начинки");
+        Assert.assertEquals("Начинки",mainPage.getTextOfActiveTab());
     }
 
     @After

@@ -22,7 +22,7 @@ public class MainPage {
     private final By bunsButton = By.xpath("//span[@class='text text_type_main-default'][text()='Булки']");
     private final By saucesButton = By.xpath("//span[@class='text text_type_main-default'][text()='Соусы']");
     private final By fillingsButton = By.xpath("//span[@class='text text_type_main-default'][text()='Начинки']");
-    private final By activityTopping = By.xpath("//div[starts-with(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc')]//span");
+    private final By activeIngredientTab = By.cssSelector(".tab_tab_type_current__2BEPc");
 
     public By bunsImg = By.xpath(".//img[@alt='Краторная булка N-200i']");
     public By bunsText = By.xpath(".//h2[text()='Булки']");
@@ -96,6 +96,16 @@ public class MainPage {
         new WebDriverWait(driver, Duration.ofSeconds(7))
                 .until(ExpectedConditions.visibilityOfElementLocated(textBurgerMainPage));
     }
+
+    @Step("Проверка, что отобразился main контейнер главной страницы")
+    public Boolean checkMainPageLoad(){
+        return driver.findElement(bunsButton).isDisplayed();
+    }
+    @Step("Получение названия активного таба")
+    public String getTextOfActiveTab(){
+      return   driver.findElement(activeIngredientTab).getText();
+    }
+
 
 
 
