@@ -63,7 +63,7 @@ public class LoginPageTest {
         user = UserGenerator.createRandomUser();
         registerPage.registerNewUser(user.getName(), user.getEmail(), user.getPassword());
         loginPage.waitForLoadEntrance();
-        loginPage.loginUser("leonid@yandex.ru", "12345asd");
+        loginPage.loginUser(emailValue,passwordValue);
         Assert.assertTrue(mainPage.checkMainPageLoad());
     }
     @Test
